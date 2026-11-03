@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>DREAM SURFERS</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <main id="auth" class="panel screen">
+    <h1>DREAM<span>SURFERS</span></h1>
+    <p class="tag">Run real cities from orbit.</p>
+    <div class="tabs"><button id="tab-login" class="on" type="button">Sign in</button><button id="tab-register" type="button">Create account</button></div>
+    <form id="auth-form" autocomplete="on">
+      <label>Username <input id="username" name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+"></label>
+      <label>Password <input id="password" name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="128"></label>
+      <p id="auth-error" class="error" role="alert"></p>
+      <button id="auth-submit" class="primary" type="submit">Sign in</button>
+    </form>
+  </main>
+
+  <main id="menu" class="panel screen hidden">
+    <header><h2>DREAM<span>SURFERS</span></h2><div><span id="who"></span> <button id="logout" type="button" class="ghost">Sign out</button></div></header>
+    <h3>Choose your runner</h3>
+    <div class="picker">
+      <canvas id="preview" width="360" height="440" aria-label="Character preview"></canvas>
+      <div>
+        <div id="chars" class="chars" role="radiogroup" aria-label="Runner"></div>
+        <p id="char-name" class="char-name"></p>
+      </div>
+    </div>
+    <h3>Pick a city (5 km run)</h3>
+    <div id="cities" class="cities"></div>
+    <div class="row">
+      <button id="play-single" class="primary" type="button">Solo run · outrun the police</button>
+    </div>
+    <h3>Multiplayer · race, then duel</h3>
+    <div class="row">
+      <button id="mp-create" type="button">Create room</button>
+      <input id="join-code" placeholder="ROOM CODE" maxlength="5" aria-label="Room code">
+      <button id="mp-join" type="button">Join</button>
+    </div>
+    <p id="menu-error" class="error" role="alert"></p>
+    <h3>Leaderboard · <span id="lb-city"></span></h3>
+    <ol id="leaderboard" class="lb"></ol>
+    <p class="help">Arrows/WASD move · ↑ jump · ↓ roll · Space shoots police (collect guns on the way). Touch: swipe, tap to shoot.<br>Arena: WASD move, mouse aim, click/Space fire.</p>
+  </main>
+
+  <main id="lobby" class="panel screen hidden">
+    <h2>Room <b id="room-code"></b></h2>
+    <p>City: <select id="room-city"></select></p>
+    <ul id="room-players" class="plist"></ul>
+    <div class="row"><button id="room-start" class="primary" type="button">Start race</button><button id="room-leave" type="button">Leave</button></div>
+    <p id="lobby-error" class="error" role="alert"></p>
+    <p class="help">Race 5 km collecting coins and guns. Everyone then drops into one arena: last one standing wins — unless someone out-scored them.</p>
+  </main>
+
+  <div id="hud" class="hidden">
+    <div class="stat"><b id="h-coins">0</b><small>COINS</small></div>
+    <div class="stat"><b id="h-ammo">0</b><small>AMMO</small></div>
+    <div class="stat"><b id="h-dist">0</b><small>METRES</small></div>
+    <div id="police" class="police hidden"><small>POLICE</small><div class="bar"><i id="police-bar"></i></div></div>
+    <div class="progress"><i id="prog"></i></div>
+    <ol id="h-board" class="board hidden"></ol>
+    <div id="arena-hud" class="arena-hud hidden"><div><b id="a-hp">100</b><small>HP</small></div><div><b id="a-ammo">0</b><small>AMMO</small></div><div><b id="a-alive">0</b><small>ALIVE</small></div><div><b id="a-score">0</b><small>SCORE</small></div></div>
+    <ul id="feed" class="feed"></ul>
+    <div id="banner" class="banner hidden"></div>
+    <small id="attrib" class="attrib">Imagery © Esri, Maxar, Earthstar Geographics</small>
+  </div>
+
+  <div id="overlay" class="panel overlay hidden"><h2 id="ov-title"></h2><div id="ov-body"></div><div class="row"><button id="ov-btn" class="primary" type="button">OK</button></div></div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
